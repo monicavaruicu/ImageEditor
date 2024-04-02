@@ -2,3 +2,6 @@
 *.exe
 *.pdb
 *.suo
+ImageEditor/obj/Debug/DesignTimeResolveAssemblyReferences.cache
+ImageEditor/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+ImageEditor/obj/Debug/ImageEditor.csproj.AssemblyReference.cache
