@@ -266,7 +266,7 @@ namespace ImageEditor
             Bitmap image = new Bitmap(PictureBox.Image);
 
             double averageIntensity = CalculateAverageIntensity(image);
-            double factor = 0.2;
+            double factor = 1.1;
 
             for (int x = 0; x < image.Width; x++)
             {
