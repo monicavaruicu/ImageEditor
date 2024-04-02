@@ -212,6 +212,7 @@
             this.ContrastLowButton.TabIndex = 17;
             this.ContrastLowButton.Text = "-";
             this.ContrastLowButton.UseVisualStyleBackColor = true;
+            this.ContrastLowButton.Click += new System.EventHandler(this.ContrastLowButton_Click);
             // 
             // ImageEditor
             // 

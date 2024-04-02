@@ -307,5 +307,30 @@ namespace ImageEditor
             int newIntensity = (int)((originalIntensity - averageIntensity) * factor + averageIntensity);
             return Math.Min(255, Math.Max(0, newIntensity));
         }
+
+        private void ContrastLowButton_Click(object sender, EventArgs e)
+        {
+            Bitmap image = new Bitmap(PictureBox.Image);
+
+            double averageIntensity = CalculateAverageIntensity(image);
+            double factor = 0.9;
+
+            for (int x = 0; x < image.Width; x++)
+            {
+                for (int y = 0; y < image.Height; y++)
+                {
+                    Color originalColor = image.GetPixel(x, y);
+
+                    int newR = CalculateNewIntensity(originalColor.R, averageIntensity, factor);
+                    int newG = CalculateNewIntensity(originalColor.G, averageIntensity, factor);
+                    int newB = CalculateNewIntensity(originalColor.B, averageIntensity, factor);
+
+                    Color newColor = Color.FromArgb(newR, newG, newB);
+                    image.SetPixel(x, y, newColor);
+                }
+            }
+
+            PictureBox.Image = image;
+        }
     }
 }
