@@ -5,3 +5,10 @@
 ImageEditor/obj/Debug/DesignTimeResolveAssemblyReferences.cache
 ImageEditor/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 ImageEditor/obj/Debug/ImageEditor.csproj.AssemblyReference.cache
+ImageEditor/obj/Debug/ImageEditor.pdb
+*.exe
+*.pdb
+.vsidx
+.vs/ImageEditor/FileContentIndex/77d9c64e-487c-4e37-add1-cc779a1e0574.vsidx
+.vs/ImageEditor/v17/.suo
+.vs/ImageEditor/FileContentIndex/56ba7da3-12f9-4f88-bceb-2440ababc136.vsidx
