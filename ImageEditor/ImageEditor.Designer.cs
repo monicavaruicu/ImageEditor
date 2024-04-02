@@ -223,7 +223,7 @@
             // 
             // Revert
             // 
-            this.Revert.Location = new System.Drawing.Point(636, 345);
+            this.Revert.Location = new System.Drawing.Point(636, 311);
             this.Revert.Name = "Revert";
             this.Revert.Size = new System.Drawing.Size(122, 28);
             this.Revert.TabIndex = 18;
@@ -272,7 +272,7 @@
             // 
             // ResizeButton
             // 
-            this.ResizeButton.Location = new System.Drawing.Point(636, 311);
+            this.ResizeButton.Location = new System.Drawing.Point(636, 345);
             this.ResizeButton.Name = "ResizeButton";
             this.ResizeButton.Size = new System.Drawing.Size(122, 28);
             this.ResizeButton.TabIndex = 23;
