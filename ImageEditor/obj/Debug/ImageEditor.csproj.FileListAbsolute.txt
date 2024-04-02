@@ -1,0 +1,15 @@
+D:\ImageEditor\ImageEditor\obj\Debug\ImageEditor.csproj.AssemblyReference.cache
+D:\ImageEditor\ImageEditor\obj\Debug\ImageEditor.ImageEditor.resources
+D:\ImageEditor\ImageEditor\obj\Debug\ImageEditor.Properties.Resources.resources
+D:\ImageEditor\ImageEditor\obj\Debug\ImageEditor.csproj.GenerateResource.cache
+D:\ImageEditor\ImageEditor\obj\Debug\ImageEditor.csproj.CoreCompileInputs.cache
+D:\ImageEditor\ImageEditor\bin\Debug\ImageEditor.exe.config
+D:\ImageEditor\ImageEditor\bin\Debug\ImageEditor.exe
+D:\ImageEditor\ImageEditor\bin\Debug\ImageEditor.pdb
+D:\ImageEditor\ImageEditor\obj\Debug\ImageEditor.exe
+D:\ImageEditor\ImageEditor\obj\Debug\ImageEditor.pdb
+D:\ImageEditor\ImageEditor\bin\Debug\ImageProcessor.dll
+D:\ImageEditor\ImageEditor\bin\Debug\System.ValueTuple.dll
+D:\ImageEditor\ImageEditor\bin\Debug\ImageProcessor.xml
+D:\ImageEditor\ImageEditor\bin\Debug\System.ValueTuple.xml
+D:\ImageEditor\ImageEditor\obj\Debug\ImageEditor.csproj.CopyComplete
