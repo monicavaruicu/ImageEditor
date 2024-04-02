@@ -183,12 +183,10 @@ namespace ImageEditor
                 {
                     Color originalColor = image.GetPixel(x, y);
 
-                    // Crește intensitatea culorii verzi
                     int r = originalColor.R;
-                    int g = Math.Min(255, (int)(originalColor.G * 1.5)); // Creștere cu 50%
+                    int g = Math.Min(255, (int)(originalColor.G * 1.5));
                     int b = originalColor.B;
 
-                    // Actualizează pixelul din imaginea rezultat
                     Color newColor = Color.FromArgb(r, g, b);
                     image.SetPixel(x, y, newColor);
                 }
@@ -208,7 +206,6 @@ namespace ImageEditor
                 {
                     Color originalColor = image.GetPixel(x, y);
 
-                    // Păstrează componenta albastră și scade celelalte componente
                     int tr = originalColor.R / 2;
                     int tg = originalColor.G / 2;
                     int tb = originalColor.B;
@@ -252,7 +249,6 @@ namespace ImageEditor
                 {
                     Color originalColor = image.GetPixel(x, y);
 
-                    // Reducem intensitatea tuturor componentelor culorilor
                     int newR = Math.Max(0, originalColor.R - brightness);
                     int newG = Math.Max(0, originalColor.G - brightness);
                     int newB = Math.Max(0, originalColor.B - brightness);
@@ -270,7 +266,7 @@ namespace ImageEditor
             Bitmap image = new Bitmap(PictureBox.Image);
 
             double averageIntensity = CalculateAverageIntensity(image);
-            int factor = 5;
+            double factor = 0.2;
 
             for (int x = 0; x < image.Width; x++)
             {
@@ -278,7 +274,6 @@ namespace ImageEditor
                 {
                     Color originalColor = image.GetPixel(x, y);
 
-                    // Calculează noua intensitate a culorii pentru fiecare componentă
                     int newR = CalculateNewIntensity(originalColor.R, averageIntensity, factor);
                     int newG = CalculateNewIntensity(originalColor.G, averageIntensity, factor);
                     int newB = CalculateNewIntensity(originalColor.B, averageIntensity, factor);
@@ -300,19 +295,17 @@ namespace ImageEditor
                 for (int y = 0; y < image.Height; y++)
                 {
                     Color pixelColor = image.GetPixel(x, y);
-                    totalIntensity += (pixelColor.R + pixelColor.G + pixelColor.B) / 3.0; // Media intensității culorilor
+                    totalIntensity += (pixelColor.R + pixelColor.G + pixelColor.B) / 3.0; 
                 }
             }
 
-            // Calculează media intensității culorilor pe toată imaginea
             return totalIntensity / (image.Width * image.Height);
         }
 
-        // Funcție pentru calculul noii intensități a culorilor
         static int CalculateNewIntensity(int originalIntensity, double averageIntensity, double factor)
         {
-            // Formula pentru ajustarea intensității în funcție de factorul de contrast
-            return (int)(averageIntensity + factor * (originalIntensity - averageIntensity));
+            int newIntensity = (int)((originalIntensity - averageIntensity) * factor + averageIntensity);
+            return Math.Min(255, Math.Max(0, newIntensity));
         }
     }
 }
