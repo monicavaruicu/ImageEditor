@@ -7,8 +7,10 @@ namespace ImageEditor
 {
     public partial class ImageEditor : Form
     {
+        private Size originalImageSize;
         private Stack<Bitmap> previousStates;
         private int revertCounter;
+
 
         public ImageEditor()
         {
@@ -34,6 +36,7 @@ namespace ImageEditor
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 PictureBox.Image = Image.FromFile(openFileDialog.FileName);
+                originalImageSize = PictureBox.Image.Size;
                 PictureBox.Image = ScaleImage(PictureBox.Image, PictureBox.Size);
                 AddState(new Bitmap(PictureBox.Image));
             }
@@ -426,43 +429,6 @@ namespace ImageEditor
             return grayImage;
         }
 
-        private void SaveButton_Click(object sender, EventArgs e)
-        {
-            if (PictureBox.Image != null)
-            {
-                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-                {
-                    saveFileDialog.Filter = "JPEG Image|*.jpg|Bitmap Image|*.bmp|PNG Image|*.png";
-                    saveFileDialog.Title = "Save an Image File";
-                    saveFileDialog.ShowDialog();
-
-                    if (saveFileDialog.FileName != "")
-                    {
-                        string extension = System.IO.Path.GetExtension(saveFileDialog.FileName).ToLower();
-
-                        switch (extension)
-                        {
-                            case ".jpg":
-                                PictureBox.Image.Save(saveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
-                                MessageBox.Show("Image succesfully saved", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                break;
-                            case ".bmp":
-                                PictureBox.Image.Save(saveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Bmp);
-                                MessageBox.Show("Image succesfully saved", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                break;
-                            case ".png":
-                                PictureBox.Image.Save(saveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Png);
-                                MessageBox.Show("Image succesfully saved", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                break;
-                            default:
-                                MessageBox.Show("Unsupported format", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                break;
-                        }
-                    }
-                }
-            }
-        }
-
         private void ColorCorrectionButton_Click(object sender, EventArgs e)
         {
             if (PictureBox.Image != null)
@@ -505,5 +471,44 @@ namespace ImageEditor
             return Math.Max(min, Math.Min(value, max));
         }
 
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            if (PictureBox.Image != null)
+            {
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "JPEG Image|*.jpg|Bitmap Image|*.bmp|PNG Image|*.png";
+                    saveFileDialog.Title = "Save an Image File";
+                    saveFileDialog.ShowDialog();
+
+                    if (saveFileDialog.FileName != "")
+                    {
+                        string extension = System.IO.Path.GetExtension(saveFileDialog.FileName).ToLower();
+
+                        Bitmap originalImage = new Bitmap(PictureBox.Image);
+                        Bitmap resizedImage = new Bitmap(originalImage, originalImageSize);
+
+                        switch (extension)
+                        {
+                            case ".jpg":
+                                resizedImage.Save(saveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                                MessageBox.Show("Image succesfully saved", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                break;
+                            case ".bmp":
+                                resizedImage.Save(saveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Bmp);
+                                MessageBox.Show("Image succesfully saved", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                break;
+                            case ".png":
+                                resizedImage.Save(saveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Png);
+                                MessageBox.Show("Image succesfully saved", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                break;
+                            default:
+                                MessageBox.Show("Unsupported format", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                break;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
