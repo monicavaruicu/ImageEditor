@@ -50,6 +50,7 @@
             this.GrayscaleHighButton = new System.Windows.Forms.Button();
             this.GrayscaleLowButton = new System.Windows.Forms.Button();
             this.ColorCorrectionButton = new System.Windows.Forms.Button();
+            this.ResizeButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -164,7 +165,7 @@
             // 
             // BrightnessHighButton
             // 
-            this.BrightnessHighButton.Location = new System.Drawing.Point(746, 206);
+            this.BrightnessHighButton.Location = new System.Drawing.Point(746, 196);
             this.BrightnessHighButton.Name = "BrightnessHighButton";
             this.BrightnessHighButton.Size = new System.Drawing.Size(22, 28);
             this.BrightnessHighButton.TabIndex = 12;
@@ -175,7 +176,7 @@
             // Brightness
             // 
             this.Brightness.AutoSize = true;
-            this.Brightness.Location = new System.Drawing.Point(661, 212);
+            this.Brightness.Location = new System.Drawing.Point(661, 202);
             this.Brightness.Name = "Brightness";
             this.Brightness.Size = new System.Drawing.Size(70, 16);
             this.Brightness.TabIndex = 13;
@@ -183,7 +184,7 @@
             // 
             // BrightnessLowButton
             // 
-            this.BrightnessLowButton.Location = new System.Drawing.Point(624, 206);
+            this.BrightnessLowButton.Location = new System.Drawing.Point(624, 196);
             this.BrightnessLowButton.Name = "BrightnessLowButton";
             this.BrightnessLowButton.Size = new System.Drawing.Size(22, 28);
             this.BrightnessLowButton.TabIndex = 14;
@@ -194,7 +195,7 @@
             // Contrast
             // 
             this.Contrast.AutoSize = true;
-            this.Contrast.Location = new System.Drawing.Point(661, 246);
+            this.Contrast.Location = new System.Drawing.Point(661, 236);
             this.Contrast.Name = "Contrast";
             this.Contrast.Size = new System.Drawing.Size(56, 16);
             this.Contrast.TabIndex = 15;
@@ -202,7 +203,7 @@
             // 
             // ContrastHighButton
             // 
-            this.ContrastHighButton.Location = new System.Drawing.Point(746, 240);
+            this.ContrastHighButton.Location = new System.Drawing.Point(746, 230);
             this.ContrastHighButton.Name = "ContrastHighButton";
             this.ContrastHighButton.Size = new System.Drawing.Size(22, 28);
             this.ContrastHighButton.TabIndex = 16;
@@ -212,7 +213,7 @@
             // 
             // ContrastLowButton
             // 
-            this.ContrastLowButton.Location = new System.Drawing.Point(624, 240);
+            this.ContrastLowButton.Location = new System.Drawing.Point(624, 230);
             this.ContrastLowButton.Name = "ContrastLowButton";
             this.ContrastLowButton.Size = new System.Drawing.Size(22, 28);
             this.ContrastLowButton.TabIndex = 17;
@@ -233,7 +234,7 @@
             // Grayscale
             // 
             this.Grayscale.AutoSize = true;
-            this.Grayscale.Location = new System.Drawing.Point(661, 280);
+            this.Grayscale.Location = new System.Drawing.Point(661, 270);
             this.Grayscale.Name = "Grayscale";
             this.Grayscale.Size = new System.Drawing.Size(69, 16);
             this.Grayscale.TabIndex = 19;
@@ -241,7 +242,7 @@
             // 
             // GrayscaleHighButton
             // 
-            this.GrayscaleHighButton.Location = new System.Drawing.Point(746, 274);
+            this.GrayscaleHighButton.Location = new System.Drawing.Point(746, 264);
             this.GrayscaleHighButton.Name = "GrayscaleHighButton";
             this.GrayscaleHighButton.Size = new System.Drawing.Size(22, 28);
             this.GrayscaleHighButton.TabIndex = 20;
@@ -251,7 +252,7 @@
             // 
             // GrayscaleLowButton
             // 
-            this.GrayscaleLowButton.Location = new System.Drawing.Point(624, 274);
+            this.GrayscaleLowButton.Location = new System.Drawing.Point(624, 264);
             this.GrayscaleLowButton.Name = "GrayscaleLowButton";
             this.GrayscaleLowButton.Size = new System.Drawing.Size(22, 28);
             this.GrayscaleLowButton.TabIndex = 21;
@@ -269,11 +270,22 @@
             this.ColorCorrectionButton.UseVisualStyleBackColor = true;
             this.ColorCorrectionButton.Click += new System.EventHandler(this.ColorCorrectionButton_Click);
             // 
+            // ResizeButton
+            // 
+            this.ResizeButton.Location = new System.Drawing.Point(636, 311);
+            this.ResizeButton.Name = "ResizeButton";
+            this.ResizeButton.Size = new System.Drawing.Size(122, 28);
+            this.ResizeButton.TabIndex = 23;
+            this.ResizeButton.Text = "Resize";
+            this.ResizeButton.UseVisualStyleBackColor = true;
+            this.ResizeButton.Click += new System.EventHandler(this.Resize_Click);
+            // 
             // ImageEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(789, 462);
+            this.Controls.Add(this.ResizeButton);
             this.Controls.Add(this.ColorCorrectionButton);
             this.Controls.Add(this.GrayscaleLowButton);
             this.Controls.Add(this.GrayscaleHighButton);
@@ -329,5 +341,6 @@
         private System.Windows.Forms.Button GrayscaleHighButton;
         private System.Windows.Forms.Button GrayscaleLowButton;
         private System.Windows.Forms.Button ColorCorrectionButton;
+        private System.Windows.Forms.Button ResizeButton;
     }
 }
