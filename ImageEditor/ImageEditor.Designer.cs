@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.OpenButton = new System.Windows.Forms.Button();
-            this.saveButton = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
             this.PictureBox = new System.Windows.Forms.PictureBox();
             this.FlipVerticalButton = new System.Windows.Forms.Button();
             this.HorizontalFlipButton = new System.Windows.Forms.Button();
@@ -46,6 +46,9 @@
             this.ContrastHighButton = new System.Windows.Forms.Button();
             this.ContrastLowButton = new System.Windows.Forms.Button();
             this.Revert = new System.Windows.Forms.Button();
+            this.Grayscale = new System.Windows.Forms.Label();
+            this.GrayscaleHighButton = new System.Windows.Forms.Button();
+            this.GrayscaleLowButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,14 +62,15 @@
             this.OpenButton.UseVisualStyleBackColor = true;
             this.OpenButton.Click += new System.EventHandler(this.OpenButton_Click);
             // 
-            // saveButton
+            // SaveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(636, 416);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(122, 31);
-            this.saveButton.TabIndex = 2;
-            this.saveButton.Text = "Save";
-            this.saveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Location = new System.Drawing.Point(636, 416);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(122, 31);
+            this.SaveButton.TabIndex = 2;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // PictureBox
             // 
@@ -225,11 +229,43 @@
             this.Revert.UseVisualStyleBackColor = true;
             this.Revert.Click += new System.EventHandler(this.Revert_Click);
             // 
+            // Grayscale
+            // 
+            this.Grayscale.AutoSize = true;
+            this.Grayscale.Location = new System.Drawing.Point(660, 246);
+            this.Grayscale.Name = "Grayscale";
+            this.Grayscale.Size = new System.Drawing.Size(69, 16);
+            this.Grayscale.TabIndex = 19;
+            this.Grayscale.Text = "Grayscale";
+            // 
+            // GrayscaleHighButton
+            // 
+            this.GrayscaleHighButton.Location = new System.Drawing.Point(745, 240);
+            this.GrayscaleHighButton.Name = "GrayscaleHighButton";
+            this.GrayscaleHighButton.Size = new System.Drawing.Size(22, 28);
+            this.GrayscaleHighButton.TabIndex = 20;
+            this.GrayscaleHighButton.Text = "+";
+            this.GrayscaleHighButton.UseVisualStyleBackColor = true;
+            this.GrayscaleHighButton.Click += new System.EventHandler(this.GrayscaleHighButton_Click);
+            // 
+            // GrayscaleLowButton
+            // 
+            this.GrayscaleLowButton.Location = new System.Drawing.Point(623, 240);
+            this.GrayscaleLowButton.Name = "GrayscaleLowButton";
+            this.GrayscaleLowButton.Size = new System.Drawing.Size(22, 28);
+            this.GrayscaleLowButton.TabIndex = 21;
+            this.GrayscaleLowButton.Text = "-";
+            this.GrayscaleLowButton.UseVisualStyleBackColor = true;
+            this.GrayscaleLowButton.Click += new System.EventHandler(this.GrayscaleLowButton_Click);
+            // 
             // ImageEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(789, 462);
+            this.Controls.Add(this.GrayscaleLowButton);
+            this.Controls.Add(this.GrayscaleHighButton);
+            this.Controls.Add(this.Grayscale);
             this.Controls.Add(this.Revert);
             this.Controls.Add(this.ContrastLowButton);
             this.Controls.Add(this.ContrastHighButton);
@@ -246,7 +282,7 @@
             this.Controls.Add(this.HorizontalFlipButton);
             this.Controls.Add(this.FlipVerticalButton);
             this.Controls.Add(this.PictureBox);
-            this.Controls.Add(this.saveButton);
+            this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.OpenButton);
             this.Name = "ImageEditor";
             this.Text = "ImageEditor";
@@ -260,7 +296,7 @@
         #endregion
 
         private System.Windows.Forms.Button OpenButton;
-        private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.PictureBox PictureBox;
         private System.Windows.Forms.Button FlipVerticalButton;
         private System.Windows.Forms.Button HorizontalFlipButton;
@@ -277,5 +313,8 @@
         private System.Windows.Forms.Button ContrastHighButton;
         private System.Windows.Forms.Button ContrastLowButton;
         private System.Windows.Forms.Button Revert;
+        private System.Windows.Forms.Label Grayscale;
+        private System.Windows.Forms.Button GrayscaleHighButton;
+        private System.Windows.Forms.Button GrayscaleLowButton;
     }
 }

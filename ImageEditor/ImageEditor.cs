@@ -25,29 +25,6 @@ namespace ImageEditor
         {
             previousStates.Push(state);
             revertCounter++;
-
-            if (revertCounter >= 3)
-            {
-                ContrastLowButton.Enabled = false;
-            }
-        }
-
-        private void RevertToPreviousState()
-        {
-            if (previousStates.Count >= 3)
-            {
-                Bitmap state1 = previousStates.Pop();
-                Bitmap state2 = previousStates.Pop();
-                Bitmap state3 = previousStates.Pop();
-
-                PictureBox.Image = state3;
-                revertCounter -= 3;
-
-                if (revertCounter < 3)
-                {
-                    ContrastLowButton.Enabled = true;
-                }
-            }
         }
 
         private void OpenButton_Click(object sender, EventArgs e)
@@ -94,7 +71,6 @@ namespace ImageEditor
             if (PictureBox.Image != null)
             {
                 PictureBox.Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
-                AddState(new Bitmap(PictureBox.Image));
                 PictureBox.Refresh();
             }
         }
@@ -104,7 +80,6 @@ namespace ImageEditor
             if (PictureBox.Image != null)
             {
                 PictureBox.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
-                AddState(new Bitmap(PictureBox.Image));
                 PictureBox.Refresh();
             }
         }
@@ -116,14 +91,12 @@ namespace ImageEditor
                 Bitmap bmp = new Bitmap(PictureBox.Image);
                 bmp.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 PictureBox.Image = bmp;
-                AddState(new Bitmap(PictureBox.Image));
             }
         }
 
         private void InvertButton_Click(object sender, EventArgs e)
         {
             InvertImage(PictureBox.Image);
-            AddState(new Bitmap(PictureBox.Image));
         }
 
         private void InvertImage(Image image)
@@ -170,7 +143,6 @@ namespace ImageEditor
             {
                 Bitmap filteredImage = ApplyBlackAndWhiteFilter(PictureBox.Image);
                 PictureBox.Image = filteredImage;
-                AddState(new Bitmap(PictureBox.Image));
             }
         }
 
@@ -180,7 +152,6 @@ namespace ImageEditor
             {
                 Bitmap filteredImage = ApplySepiaFilter(PictureBox.Image);
                 PictureBox.Image = filteredImage;
-                AddState(new Bitmap(PictureBox.Image));
             }
         }
 
@@ -235,7 +206,6 @@ namespace ImageEditor
 
 
             PictureBox.Image = image;
-            AddState(new Bitmap(PictureBox.Image));
         }
 
         private void BlueFilterButton_Click(object sender, EventArgs e)
@@ -258,7 +228,6 @@ namespace ImageEditor
             }
 
             PictureBox.Image = image;
-            AddState(new Bitmap(PictureBox.Image));
         }
 
         private void BrightnessHighButton_Click(object sender, EventArgs e)
@@ -279,7 +248,6 @@ namespace ImageEditor
             }
 
             PictureBox.Image = image;
-            AddState(new Bitmap(PictureBox.Image));
         }
 
         private void BrightnessLowButton_Click(object sender, EventArgs e)
@@ -303,7 +271,6 @@ namespace ImageEditor
             }
 
             PictureBox.Image = image;
-            AddState(new Bitmap(PictureBox.Image));
         }
 
         private void ContrastHighButton_Click(object sender, EventArgs e)
@@ -329,7 +296,6 @@ namespace ImageEditor
             }
 
             PictureBox.Image = image;
-            AddState(new Bitmap(PictureBox.Image));
         }
 
         static double CalculateAverageIntensity(Bitmap image)
@@ -377,7 +343,6 @@ namespace ImageEditor
             }
 
             PictureBox.Image = image;
-            AddState(new Bitmap(PictureBox.Image));
         }
 
         private void Revert_Click(object sender, EventArgs e)
@@ -397,6 +362,103 @@ namespace ImageEditor
                 if (revertCounter < 3)
                 {
                     ContrastLowButton.Enabled = true;
+                }
+            }
+        }
+
+        private void GrayscaleHighButton_Click(object sender, EventArgs e)
+        {
+            if (PictureBox.Image != null)
+            {
+                Bitmap grayImage = ApplyHighGrayscaleFilter(PictureBox.Image);
+                PictureBox.Image = grayImage;
+            }
+        }
+
+        private Bitmap ApplyHighGrayscaleFilter(Image image)
+        {
+            Bitmap grayImage = new Bitmap(image);
+            double factor = 1.1;
+
+            for (int x = 0; x < image.Width; x++)
+            {
+                for (int y = 0; y < image.Height; y++)
+                {
+                    Color pixelColor = grayImage.GetPixel(x, y);
+                    int avgColor = (int)(0.3 * pixelColor.R + 0.59 * pixelColor.G + 0.11 * pixelColor.B);
+                    avgColor = Math.Min(255, (int)(avgColor * factor));
+                    Color newColor = Color.FromArgb(avgColor, avgColor, avgColor);
+                    grayImage.SetPixel(x, y, newColor);
+                }
+            }
+
+            return grayImage;
+        }
+
+        private void GrayscaleLowButton_Click(object sender, EventArgs e)
+        {
+            if (PictureBox.Image != null)
+            {
+                Bitmap grayImage = ApplyLowGrayscaleFilter(PictureBox.Image);
+                PictureBox.Image = grayImage;
+                AddState(new Bitmap(PictureBox.Image));
+            }
+        }
+
+        private Bitmap ApplyLowGrayscaleFilter(Image image)
+        {
+            Bitmap grayImage = new Bitmap(image);
+            double factor = 0.9;
+
+            for (int x = 0; x < image.Width; x++)
+            {
+                for (int y = 0; y < image.Height; y++)
+                {
+                    Color pixelColor = grayImage.GetPixel(x, y);
+                    int avgColor = (int)(0.3 * pixelColor.R + 0.59 * pixelColor.G + 0.11 * pixelColor.B);
+                    avgColor = (int)(avgColor * factor);
+                    avgColor = Math.Min(255, avgColor);
+                    Color newColor = Color.FromArgb(avgColor, avgColor, avgColor);
+                    grayImage.SetPixel(x, y, newColor);
+                }
+            }
+
+            return grayImage;
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            if (PictureBox.Image != null)
+            {
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "JPEG Image|*.jpg|Bitmap Image|*.bmp|PNG Image|*.png";
+                    saveFileDialog.Title = "Save an Image File";
+                    saveFileDialog.ShowDialog();
+
+                    if (saveFileDialog.FileName != "")
+                    {
+                        string extension = System.IO.Path.GetExtension(saveFileDialog.FileName).ToLower();
+
+                        switch (extension)
+                        {
+                            case ".jpg":
+                                PictureBox.Image.Save(saveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                                MessageBox.Show("Image succesfully saved", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                break;
+                            case ".bmp":
+                                PictureBox.Image.Save(saveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Bmp);
+                                MessageBox.Show("Image succesfully saved", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                break;
+                            case ".png":
+                                PictureBox.Image.Save(saveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Png);
+                                MessageBox.Show("Image succesfully saved", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                break;
+                            default:
+                                MessageBox.Show("Unsupported format", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                break;
+                        }
+                    }
                 }
             }
         }
