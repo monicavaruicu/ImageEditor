@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -6,6 +7,9 @@ namespace ImageEditor
 {
     public partial class ImageEditor : Form
     {
+        private Stack<Bitmap> previousStates;
+        private int revertCounter;
+
         public ImageEditor()
         {
             InitializeComponent();
@@ -13,7 +17,37 @@ namespace ImageEditor
 
         private void ImageEditor_Load(object sender, EventArgs e)
         {
+            previousStates = new Stack<Bitmap>();
+            revertCounter = 0;
+        }
 
+        private void AddState(Bitmap state)
+        {
+            previousStates.Push(state);
+            revertCounter++;
+
+            if (revertCounter >= 3)
+            {
+                ContrastLowButton.Enabled = false;
+            }
+        }
+
+        private void RevertToPreviousState()
+        {
+            if (previousStates.Count >= 3)
+            {
+                Bitmap state1 = previousStates.Pop();
+                Bitmap state2 = previousStates.Pop();
+                Bitmap state3 = previousStates.Pop();
+
+                PictureBox.Image = state3;
+                revertCounter -= 3;
+
+                if (revertCounter < 3)
+                {
+                    ContrastLowButton.Enabled = true;
+                }
+            }
         }
 
         private void OpenButton_Click(object sender, EventArgs e)
@@ -24,6 +58,7 @@ namespace ImageEditor
             {
                 PictureBox.Image = Image.FromFile(openFileDialog.FileName);
                 PictureBox.Image = ScaleImage(PictureBox.Image, PictureBox.Size);
+                AddState(new Bitmap(PictureBox.Image));
             }
         }
 
@@ -59,6 +94,7 @@ namespace ImageEditor
             if (PictureBox.Image != null)
             {
                 PictureBox.Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
+                AddState(new Bitmap(PictureBox.Image));
                 PictureBox.Refresh();
             }
         }
@@ -68,6 +104,7 @@ namespace ImageEditor
             if (PictureBox.Image != null)
             {
                 PictureBox.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
+                AddState(new Bitmap(PictureBox.Image));
                 PictureBox.Refresh();
             }
         }
@@ -79,12 +116,14 @@ namespace ImageEditor
                 Bitmap bmp = new Bitmap(PictureBox.Image);
                 bmp.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 PictureBox.Image = bmp;
+                AddState(new Bitmap(PictureBox.Image));
             }
         }
 
         private void InvertButton_Click(object sender, EventArgs e)
         {
             InvertImage(PictureBox.Image);
+            AddState(new Bitmap(PictureBox.Image));
         }
 
         private void InvertImage(Image image)
@@ -131,6 +170,7 @@ namespace ImageEditor
             {
                 Bitmap filteredImage = ApplyBlackAndWhiteFilter(PictureBox.Image);
                 PictureBox.Image = filteredImage;
+                AddState(new Bitmap(PictureBox.Image));
             }
         }
 
@@ -140,6 +180,7 @@ namespace ImageEditor
             {
                 Bitmap filteredImage = ApplySepiaFilter(PictureBox.Image);
                 PictureBox.Image = filteredImage;
+                AddState(new Bitmap(PictureBox.Image));
             }
         }
 
@@ -194,6 +235,7 @@ namespace ImageEditor
 
 
             PictureBox.Image = image;
+            AddState(new Bitmap(PictureBox.Image));
         }
 
         private void BlueFilterButton_Click(object sender, EventArgs e)
@@ -216,6 +258,7 @@ namespace ImageEditor
             }
 
             PictureBox.Image = image;
+            AddState(new Bitmap(PictureBox.Image));
         }
 
         private void BrightnessHighButton_Click(object sender, EventArgs e)
@@ -236,6 +279,7 @@ namespace ImageEditor
             }
 
             PictureBox.Image = image;
+            AddState(new Bitmap(PictureBox.Image));
         }
 
         private void BrightnessLowButton_Click(object sender, EventArgs e)
@@ -259,6 +303,7 @@ namespace ImageEditor
             }
 
             PictureBox.Image = image;
+            AddState(new Bitmap(PictureBox.Image));
         }
 
         private void ContrastHighButton_Click(object sender, EventArgs e)
@@ -284,6 +329,7 @@ namespace ImageEditor
             }
 
             PictureBox.Image = image;
+            AddState(new Bitmap(PictureBox.Image));
         }
 
         static double CalculateAverageIntensity(Bitmap image)
@@ -331,6 +377,28 @@ namespace ImageEditor
             }
 
             PictureBox.Image = image;
+            AddState(new Bitmap(PictureBox.Image));
+        }
+
+        private void Revert_Click(object sender, EventArgs e)
+        {
+            if (previousStates.Count >= revertCounter)
+            {
+                Bitmap desiredState = null;
+                for (int i = 0; i < revertCounter; i++)
+                {
+                    desiredState = previousStates.Pop();
+                }
+
+                PictureBox.Image = desiredState;
+                AddState(desiredState);
+                revertCounter = previousStates.Count;
+
+                if (revertCounter < 3)
+                {
+                    ContrastLowButton.Enabled = true;
+                }
+            }
         }
     }
 }

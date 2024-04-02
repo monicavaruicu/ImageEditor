@@ -45,6 +45,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.ContrastHighButton = new System.Windows.Forms.Button();
             this.ContrastLowButton = new System.Windows.Forms.Button();
+            this.Revert = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -214,11 +215,22 @@
             this.ContrastLowButton.UseVisualStyleBackColor = true;
             this.ContrastLowButton.Click += new System.EventHandler(this.ContrastLowButton_Click);
             // 
+            // Revert
+            // 
+            this.Revert.Location = new System.Drawing.Point(636, 345);
+            this.Revert.Name = "Revert";
+            this.Revert.Size = new System.Drawing.Size(122, 28);
+            this.Revert.TabIndex = 18;
+            this.Revert.Text = "Revert";
+            this.Revert.UseVisualStyleBackColor = true;
+            this.Revert.Click += new System.EventHandler(this.Revert_Click);
+            // 
             // ImageEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(789, 462);
+            this.Controls.Add(this.Revert);
             this.Controls.Add(this.ContrastLowButton);
             this.Controls.Add(this.ContrastHighButton);
             this.Controls.Add(this.label2);
@@ -264,5 +276,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button ContrastHighButton;
         private System.Windows.Forms.Button ContrastLowButton;
+        private System.Windows.Forms.Button Revert;
     }
 }
