@@ -40,15 +40,16 @@
             this.GreenFilterButton = new System.Windows.Forms.Button();
             this.BlueFilterButton = new System.Windows.Forms.Button();
             this.BrightnessHighButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.Brightness = new System.Windows.Forms.Label();
             this.BrightnessLowButton = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.Contrast = new System.Windows.Forms.Label();
             this.ContrastHighButton = new System.Windows.Forms.Button();
             this.ContrastLowButton = new System.Windows.Forms.Button();
             this.Revert = new System.Windows.Forms.Button();
             this.Grayscale = new System.Windows.Forms.Label();
             this.GrayscaleHighButton = new System.Windows.Forms.Button();
             this.GrayscaleLowButton = new System.Windows.Forms.Button();
+            this.ColorCorrectionButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -163,7 +164,7 @@
             // 
             // BrightnessHighButton
             // 
-            this.BrightnessHighButton.Location = new System.Drawing.Point(745, 172);
+            this.BrightnessHighButton.Location = new System.Drawing.Point(746, 206);
             this.BrightnessHighButton.Name = "BrightnessHighButton";
             this.BrightnessHighButton.Size = new System.Drawing.Size(22, 28);
             this.BrightnessHighButton.TabIndex = 12;
@@ -171,18 +172,18 @@
             this.BrightnessHighButton.UseVisualStyleBackColor = true;
             this.BrightnessHighButton.Click += new System.EventHandler(this.BrightnessHighButton_Click);
             // 
-            // label1
+            // Brightness
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(660, 178);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 16);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "Brightness";
+            this.Brightness.AutoSize = true;
+            this.Brightness.Location = new System.Drawing.Point(661, 212);
+            this.Brightness.Name = "Brightness";
+            this.Brightness.Size = new System.Drawing.Size(70, 16);
+            this.Brightness.TabIndex = 13;
+            this.Brightness.Text = "Brightness";
             // 
             // BrightnessLowButton
             // 
-            this.BrightnessLowButton.Location = new System.Drawing.Point(623, 172);
+            this.BrightnessLowButton.Location = new System.Drawing.Point(624, 206);
             this.BrightnessLowButton.Name = "BrightnessLowButton";
             this.BrightnessLowButton.Size = new System.Drawing.Size(22, 28);
             this.BrightnessLowButton.TabIndex = 14;
@@ -190,18 +191,18 @@
             this.BrightnessLowButton.UseVisualStyleBackColor = true;
             this.BrightnessLowButton.Click += new System.EventHandler(this.BrightnessLowButton_Click);
             // 
-            // label2
+            // Contrast
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(660, 212);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 16);
-            this.label2.TabIndex = 15;
-            this.label2.Text = "Contrast";
+            this.Contrast.AutoSize = true;
+            this.Contrast.Location = new System.Drawing.Point(661, 246);
+            this.Contrast.Name = "Contrast";
+            this.Contrast.Size = new System.Drawing.Size(56, 16);
+            this.Contrast.TabIndex = 15;
+            this.Contrast.Text = "Contrast";
             // 
             // ContrastHighButton
             // 
-            this.ContrastHighButton.Location = new System.Drawing.Point(745, 206);
+            this.ContrastHighButton.Location = new System.Drawing.Point(746, 240);
             this.ContrastHighButton.Name = "ContrastHighButton";
             this.ContrastHighButton.Size = new System.Drawing.Size(22, 28);
             this.ContrastHighButton.TabIndex = 16;
@@ -211,7 +212,7 @@
             // 
             // ContrastLowButton
             // 
-            this.ContrastLowButton.Location = new System.Drawing.Point(623, 206);
+            this.ContrastLowButton.Location = new System.Drawing.Point(624, 240);
             this.ContrastLowButton.Name = "ContrastLowButton";
             this.ContrastLowButton.Size = new System.Drawing.Size(22, 28);
             this.ContrastLowButton.TabIndex = 17;
@@ -232,7 +233,7 @@
             // Grayscale
             // 
             this.Grayscale.AutoSize = true;
-            this.Grayscale.Location = new System.Drawing.Point(660, 246);
+            this.Grayscale.Location = new System.Drawing.Point(661, 280);
             this.Grayscale.Name = "Grayscale";
             this.Grayscale.Size = new System.Drawing.Size(69, 16);
             this.Grayscale.TabIndex = 19;
@@ -240,7 +241,7 @@
             // 
             // GrayscaleHighButton
             // 
-            this.GrayscaleHighButton.Location = new System.Drawing.Point(745, 240);
+            this.GrayscaleHighButton.Location = new System.Drawing.Point(746, 274);
             this.GrayscaleHighButton.Name = "GrayscaleHighButton";
             this.GrayscaleHighButton.Size = new System.Drawing.Size(22, 28);
             this.GrayscaleHighButton.TabIndex = 20;
@@ -250,7 +251,7 @@
             // 
             // GrayscaleLowButton
             // 
-            this.GrayscaleLowButton.Location = new System.Drawing.Point(623, 240);
+            this.GrayscaleLowButton.Location = new System.Drawing.Point(624, 274);
             this.GrayscaleLowButton.Name = "GrayscaleLowButton";
             this.GrayscaleLowButton.Size = new System.Drawing.Size(22, 28);
             this.GrayscaleLowButton.TabIndex = 21;
@@ -258,20 +259,31 @@
             this.GrayscaleLowButton.UseVisualStyleBackColor = true;
             this.GrayscaleLowButton.Click += new System.EventHandler(this.GrayscaleLowButton_Click);
             // 
+            // ColorCorrectionButton
+            // 
+            this.ColorCorrectionButton.Location = new System.Drawing.Point(636, 149);
+            this.ColorCorrectionButton.Name = "ColorCorrectionButton";
+            this.ColorCorrectionButton.Size = new System.Drawing.Size(122, 28);
+            this.ColorCorrectionButton.TabIndex = 22;
+            this.ColorCorrectionButton.Text = "Color Correction";
+            this.ColorCorrectionButton.UseVisualStyleBackColor = true;
+            this.ColorCorrectionButton.Click += new System.EventHandler(this.ColorCorrectionButton_Click);
+            // 
             // ImageEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(789, 462);
+            this.Controls.Add(this.ColorCorrectionButton);
             this.Controls.Add(this.GrayscaleLowButton);
             this.Controls.Add(this.GrayscaleHighButton);
             this.Controls.Add(this.Grayscale);
             this.Controls.Add(this.Revert);
             this.Controls.Add(this.ContrastLowButton);
             this.Controls.Add(this.ContrastHighButton);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.Contrast);
             this.Controls.Add(this.BrightnessLowButton);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Brightness);
             this.Controls.Add(this.BrightnessHighButton);
             this.Controls.Add(this.BlueFilterButton);
             this.Controls.Add(this.GreenFilterButton);
@@ -307,14 +319,15 @@
         private System.Windows.Forms.Button GreenFilterButton;
         private System.Windows.Forms.Button BlueFilterButton;
         private System.Windows.Forms.Button BrightnessHighButton;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Brightness;
         private System.Windows.Forms.Button BrightnessLowButton;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label Contrast;
         private System.Windows.Forms.Button ContrastHighButton;
         private System.Windows.Forms.Button ContrastLowButton;
         private System.Windows.Forms.Button Revert;
         private System.Windows.Forms.Label Grayscale;
         private System.Windows.Forms.Button GrayscaleHighButton;
         private System.Windows.Forms.Button GrayscaleLowButton;
+        private System.Windows.Forms.Button ColorCorrectionButton;
     }
 }

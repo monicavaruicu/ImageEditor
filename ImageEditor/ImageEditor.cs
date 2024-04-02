@@ -462,5 +462,48 @@ namespace ImageEditor
                 }
             }
         }
+
+        private void ColorCorrectionButton_Click(object sender, EventArgs e)
+        {
+            if (PictureBox.Image != null)
+            {
+                Bitmap correctedImage = ApplyColorCorrection(PictureBox.Image);
+                PictureBox.Image = correctedImage;
+                AddState(new Bitmap(PictureBox.Image));
+            }
+        }
+
+        private Bitmap ApplyColorCorrection(Image image)
+        {
+            Bitmap correctedImage = new Bitmap(image);
+
+            int redAdjustment = 20;
+            int greenAdjustment = 10;
+            int blueAdjustment = 5;
+
+            for (int x = 0; x < image.Width; x++)
+            {
+                for (int y = 0; y < image.Height; y++)
+                {
+                    Color pixelColor = correctedImage.GetPixel(x, y);
+
+                    int correctedR = Clamp(pixelColor.R + redAdjustment, 0, 255);
+                    int correctedG = Clamp(pixelColor.G + greenAdjustment, 0, 255);
+                    int correctedB = Clamp(pixelColor.B + blueAdjustment, 0, 255);
+
+                    Color newColor = Color.FromArgb(correctedR, correctedG, correctedB);
+
+                    correctedImage.SetPixel(x, y, newColor);
+                }
+            }
+
+            return correctedImage;
+        }
+
+        private int Clamp(int value, int min, int max)
+        {
+            return Math.Max(min, Math.Min(value, max));
+        }
+
     }
 }
